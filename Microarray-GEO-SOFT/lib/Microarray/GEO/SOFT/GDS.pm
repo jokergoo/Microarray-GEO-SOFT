@@ -234,10 +234,16 @@ sub id_convert {
 sub soft2exprset {
 
 	my $self = shift;
+	my $param = { colname => "title",
+	                    @_ };
 
 	my $eset = Microarray::ExprSet->new;
 	$eset->set_feature($self->rownames);
-	$eset->set_phenotype($self->colnames_explain);
+	if($param->{colname} eq "accession") {
+		$eset->set_phenotype($self->colnames);
+	} else {
+		$eset->set_phenotype($self->colnames_explain);
+	}
 	$eset->set_matrix($self->matrix);
 	
 	return $eset;
@@ -360,9 +366,11 @@ class object that the GDS belongs to. The second argument is the ID that would m
 It is one of the colnames of C<$gpl>. Also a regexp is accepted. It returns a 
 L<Microarray::ExprSet> object.
 
-=item C<$gds-E<gt>soft2exprset>
+=item C<$gds-E<gt>soft2exprset(colname =E<gt> $type)>
 
-Transform L<Microarray::GEO::SOFT::GDS> class object to L<Microarray::ExprSet> class object.
+Transform L<Microarray::GEO::SOFT::GDS> class object to L<Microarray::ExprSet> class object. L<$type>
+specifies whether to use accession number (GSMxxx) or title of each sample as the phenotype name in expression matrix.
+Valid values are "accession" and "title".
 
 =item C<$gds-E<gt>get_subset(HASH)>
 

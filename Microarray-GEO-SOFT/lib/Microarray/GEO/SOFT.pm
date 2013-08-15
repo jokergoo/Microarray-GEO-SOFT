@@ -15,7 +15,7 @@ require Microarray::GEO::SOFT::GSM;
 require Microarray::GEO::SOFT::GDS;
 require Microarray::GEO::SOFT::GSE;
 
-our $VERSION = "0.20";
+our $VERSION = "0.22";
 our $wd = getcwd();
 
 $| = 1;
@@ -543,7 +543,7 @@ Microarray::GEO::SOFT - Reading microarray data in SOFT format from GEO database
   # downloaded or parse the local file
   my $gpl = Microarray::GEO::SOFT->new->download($platform_id);
   # and do the id convert thing
-  my $e = $data->id_convert($gpl, qr/gene[-_\s]?symbol/i);
+  my $e = $g->id_convert($gpl, qr/gene[-_\s]?symbol/i);
   
   # or just transform into Microarray::ExprSet direct from GDS
   my $e = $g->soft2exprset;
