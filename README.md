@@ -84,9 +84,52 @@ $e->unify_features;
 $e->save('some-file');
 ```
 
-Also, you can use the module under command line
+### command line
 
 ```
 getgeo --id=GDS3718
 getgeo --file=GDS3718.soft --verbose
 ```
+
+options are
+
+```
+--id=[GEOID]
+ 
+  GEO ID. such as GSE123, GDS123 or GPL123. If this is set, the script would
+  download data from GEO FTP site.
+ 
+--proxy=[PROXY]
+ 
+  Proxy to connect to GEO FTP site. Format should look like
+  http://username:password@host:port/.
+ 
+--file=[FILE]
+ 
+  Filename for local GEO file. If --id is set, this option is ignored.
+ 
+--tmp-dir=[DIR]
+ 
+  Temporary directory name for processing of GEO data. By default it is
+  '.tmp_soft' in your working directory.
+ 
+--verbose
+ 
+  Whether print message while processing.
+ 
+--sample-value-column=[FIELD]
+ 
+  Since there may be multiple columns in GSM record, users may specify which
+  column is the expression value they want. By default it is 'VALUE'. Ignored
+      when analyzing GPL and GDS data.
+ 
+--output-file=[FILE]
+ 
+  Filename for the output file. By default it is 'GEOID.table' in your current
+ 
+  working directory.
+ 
+--help
+ 
+  Help message.
+  ```
